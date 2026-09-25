@@ -22,6 +22,7 @@ class Config:
     DB_USER = os.getenv("DB_USER", "root")
     DB_PASSWORD = os.getenv("DB_PASSWORD", "")
     DB_NAME = os.getenv("DB_NAME", "online_quiz_system")
+    DB_SSL = os.getenv("DB_SSL", "false").lower() in ("true", "1", "yes")
 
     # AI API Configuration
     AI_API_KEY = os.getenv("AI_API_KEY", "")

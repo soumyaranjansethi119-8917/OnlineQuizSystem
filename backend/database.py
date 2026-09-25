@@ -10,23 +10,27 @@ class DatabaseError(Exception):
 def get_connection():
     """Create and return a new MySQL connection with DictCursor."""
     try:
-        return pymysql.connect(
-            host=Config.DB_HOST,
-            port=Config.DB_PORT,
-            user=Config.DB_USER,
-            password=Config.DB_PASSWORD,
-            database=Config.DB_NAME,
-            charset='utf8mb4',
-            cursorclass=pymysql.cursors.DictCursor,
-            autocommit=False,
-            connect_timeout=3
-        )
+        conn_kwargs = {
+            "host": Config.DB_HOST,
+            "port": Config.DB_PORT,
+            "user": Config.DB_USER,
+            "password": Config.DB_PASSWORD,
+            "database": Config.DB_NAME,
+            "charset": "utf8mb4",
+            "cursorclass": pymysql.cursors.DictCursor,
+            "autocommit": False,
+            "connect_timeout": 10,
+        }
+        if Config.DB_SSL:
+            conn_kwargs["ssl"] = {"ssl": True}
+
+        return pymysql.connect(**conn_kwargs)
     except pymysql.OperationalError as e:
         code, msg = e.args if len(e.args) >= 2 else (0, str(e))
         if code == 1045:
-            raise DatabaseError("Access denied for MySQL user 'root'. Please update DB_PASSWORD in backend/.env with your MySQL root password.")
+            raise DatabaseError("Access denied for MySQL user. Please verify DB_USER and DB_PASSWORD in your backend environment variables.")
         elif code == 1049:
-            raise DatabaseError(f"Database '{Config.DB_NAME}' does not exist yet. Please run 'python init_db.py' or execute 'backend/database/schema.sql' in MySQL.")
+            raise DatabaseError(f"Database '{Config.DB_NAME}' does not exist yet. Please run 'python init_db.py' or execute schema.sql in MySQL.")
         elif code == 2003:
             raise DatabaseError(f"Cannot connect to MySQL server at {Config.DB_HOST}:{Config.DB_PORT}. Please ensure MySQL service is running.")
         else:
