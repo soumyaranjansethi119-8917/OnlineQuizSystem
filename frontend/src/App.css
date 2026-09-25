@@ -1,0 +1,342 @@
+/* ===================================================
+   QuizMaster - Production SaaS Design System
+   =================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root {
+  /* Brand Primary & Accents */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-dark: #1e3a8a;
+  --primary-light: #eff6ff;
+  --primary-subtle: #dbeafe;
+  --primary-border: #bfdbfe;
+
+  --accent: #0d9488;
+  --accent-light: #f0fdfa;
+
+  /* State Colors */
+  --success: #10b981;
+  --success-subtle: #d1fae5;
+  --success-border: #a7f3d0;
+  
+  --warning: #f59e0b;
+  --warning-subtle: #fef3c7;
+  --warning-border: #fde68a;
+
+  --danger: #ef4444;
+  --danger-subtle: #fee2e2;
+  --danger-border: #fecaca;
+
+  --info: #0284c7;
+  --info-subtle: #e0f2fe;
+  --info-border: #bae6fd;
+
+  /* Neutrals */
+  --dark: #0f172a;
+  --secondary: #64748b;
+  --muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --surface: #ffffff;
+  --background: #f8fafc;
+  --surface-hover: #f8fafc;
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Elevation Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+
+  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.22);
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--background);
+  color: #1e293b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+/* Card Styling */
+.card {
+  border: 1px solid var(--border-color);
+  background-color: var(--surface);
+  border-radius: 14px;
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+}
+
+.card-footer {
+  background-color: transparent;
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+}
+
+/* Transitions & Micro-Interactions */
+.transition-hover {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.transition-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+.hover-bg-light:hover {
+  background-color: #f1f5f9;
+  color: var(--primary) !important;
+}
+
+/* Button Refinements */
+.btn {
+  font-weight: 600;
+  transition: all 0.15s ease-in-out;
+  letter-spacing: -0.01em;
+}
+
+.btn:focus, .btn:active:focus {
+  box-shadow: var(--focus-ring);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+/* Form Controls & Focus */
+.form-control, .form-select {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  color: #1e293b;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: var(--focus-ring);
+}
+
+.form-label {
+  margin-bottom: 0.375rem;
+  color: #475569;
+}
+
+/* Dashboard Layout */
+.dashboard-wrapper {
+  display: flex;
+  min-height: calc(100vh - 65px);
+}
+
+.dashboard-content {
+  flex: 1;
+  background-color: #f8fafc;
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+}
+
+@media (max-width: 991.98px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100% !important;
+    min-height: auto !important;
+  }
+  .dashboard-content {
+    padding: 1.25rem 1rem;
+  }
+}
+
+/* Quiz Card */
+.quiz-card {
+  border: 1px solid var(--border-color);
+  background: white;
+  border-radius: 14px;
+}
+
+/* Quiz Engine Styles */
+.option-card {
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 18px;
+  background-color: white;
+  transition: all 0.18s ease;
+}
+.option-card:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+.option-card.selected {
+  border-color: var(--primary);
+  background-color: #eff6ff;
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+/* Question Palette Buttons */
+.palette-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.palette-btn.current {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  font-weight: 700;
+}
+.palette-btn.answered {
+  background-color: var(--primary);
+  color: white;
+}
+.palette-btn.unanswered {
+  background-color: #f1f5f9;
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+.palette-btn.flagged {
+  background-color: #f59e0b;
+  color: white;
+}
+
+/* Countdown Timer */
+.timer-badge {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.timer-pulse {
+  animation: pulse-danger 1s infinite;
+}
+@keyframes pulse-danger {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+/* Review Cards */
+.review-card-correct {
+  border-left: 6px solid var(--success) !important;
+}
+.review-card-wrong {
+  border-left: 6px solid var(--danger) !important;
+}
+.review-card-unanswered {
+  border-left: 6px solid var(--warning) !important;
+}
+
+/* Chatbot Styles */
+.chat-window {
+  height: 500px;
+  overflow-y: auto;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.chat-bubble-user {
+  background-color: var(--primary);
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+  padding: 12px 18px;
+  max-width: 75%;
+  box-shadow: var(--shadow-sm);
+}
+.chat-bubble-ai {
+  background-color: white;
+  color: #1e293b;
+  border: 1px solid var(--border-color);
+  border-radius: 18px 18px 18px 4px;
+  padding: 14px 18px;
+  max-width: 82%;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Tables */
+.table {
+  border-color: var(--border-color);
+}
+.table > :not(caption) > * > * {
+  padding: 0.85rem 1rem;
+}
+.table-hover > tbody > tr:hover > * {
+  background-color: #f8fafc;
+}
+
+/* Skeleton Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.skeleton-box {
+  display: inline-block;
+  height: 1em;
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
